@@ -7,6 +7,11 @@
     background-color: #EFCB68;
 }
 
+.box {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .board {
     margin: 50px;
 }
@@ -15,6 +20,4 @@
     background-color: gray;
 }
 
-.bomb {
-    background-color: blue;
-}
+.bomb {}
