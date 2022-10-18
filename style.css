@@ -12,5 +12,9 @@
 }
 
 .opened {
-    background-color: aqua;
+    background-color: gray;
+}
+
+.bomb {
+    background-color: blue;
 }
