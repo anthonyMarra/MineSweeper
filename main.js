@@ -14,9 +14,6 @@ function translater(tile) {
     if (canClick) {
         clickTile(tile.target)
         if (!isBombsGenerated) {
-            // blankTile(tile)
-            //this line might break the code by clicking and then clearing the entire board because every tile is blank since mines havent spawned in yet
-            console.log("called generateBombs function")
             generateBombs()
         }
 
@@ -28,7 +25,6 @@ function translater(tile) {
 }
 
 function winLose(win) {
-    console.log(win)
     if (win) {
         document.getElementById("win").innerHTML = "Congrats!!! You Win"
     } else {
@@ -94,7 +90,6 @@ function checkForSuroundingBombs(tile) {
     return numBombs
 }
 function blankTile(row, col) {
-    // let blankTileArray = [[], []]
     for (let y = -1; y < 2; y++) {
         for (let x = -1; x < 2; x++) {
             const rowNum = +row + +y
@@ -104,17 +99,14 @@ function blankTile(row, col) {
                 const colClass = "col" + colNum
                 let checkedTile = document.getElementsByClassName(rowClass + " " + colClass)
                 checkedTile[0].className = checkedTile[0].className + " opened"
-                console.log("tested if statmenet")
+
                 if (checkForSuroundingBombs(checkedTile[0])[0] == 0 && !checkedTile[0].classList.contains("opened")) {
-                    console.log("ran if statement")
+
                     blankTile(rowNum, colNum)
                 }
             }
         }
     }
-    // for (let i = 0; i < blankTileArray[0].length; i++) {
-    //     blankTile(blankTileArray[0][i], blankTileArray[1][i])
-    // }
 }
 
 function generateBombs() {
