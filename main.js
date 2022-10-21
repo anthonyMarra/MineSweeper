@@ -9,6 +9,12 @@ for (let i = 0; i < 216; i++) {
 tiles.forEach(function (tile) {
     tile.addEventListener('click', translater)
 })
+tiles.forEach(function (tile) {
+    tile.addEventListener('contextmenu', function (tile) {
+        console.log("clicked")
+        tile.target.className = tile.target.className + " flag"
+    })
+})
 
 function translater(tile) {
     if (canClick) {
@@ -47,12 +53,14 @@ function isGameOver() {
 
 function clickTile(tile) {
 
-    if (tile.classList.contains("bomb")) {
+    if (tile.classList.contains("bomb") && !tile.classList.contains("flag")) {
         const bombs = document.querySelectorAll(".bomb");
         bombs.forEach(function (bomb) {
             bomb.style.backgroundColor = "red"
         })
         winLose(false)
+    } else if (tile.classList.contains("flag")) {
+        console.log("worked")
     } else {
         tile.className = tile.className + " opened"
         checkForSuroundingBombs(tile)
@@ -80,7 +88,7 @@ function checkForSuroundingBombs(tile) {
             }
         }
     }
-    if (numBombs[0] != 0 && !tile.classList.contains("bomb")) {
+    if (numBombs[0] != 0 && !tile.classList.contains("bomb") && !tile.classList.contains("flag")) {
         tile.textContent = numBombs
     }
     if (numBombs[0] == 0) {
